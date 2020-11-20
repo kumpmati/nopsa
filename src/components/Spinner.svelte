@@ -1,4 +1,4 @@
-<span class:visible={active} class="spinner">⭯</span>
+<span class:visible={active} class="spinner">⟳</span>
 
 <script>
 	export let active;
@@ -7,7 +7,7 @@
 <style>
 	@keyframes spin {
 		from { transform: rotate(0) }
-		to { transform: rotate(-360deg) }
+		to { transform: rotate(360deg) }
 	}
 
 	.spinner {
@@ -19,8 +19,8 @@
 		width: 1em;
 		height: 1em;
 		transform-origin: center;
-		animation: spin 500ms infinite linear;
-		transition: opacity 200ms;
+		animation: spin 500ms infinite;
+		transition: opacity 100ms;
 	}
 
 	.spinner.visible {

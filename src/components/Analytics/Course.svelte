@@ -2,9 +2,12 @@
 	export let code = "";
 	export let name = "";
 	export let grade = 0;
-	export let points = 0;
+	export let credits = 0;
 	export let type = "";
-	export let date = null;
+  export let date = null;
+
+  import { courseTypes } from './misc.js';
+  $: verboseType = courseTypes[type] || "";
 </script>
 
 <tr class="course">
@@ -14,21 +17,14 @@
 			{code}
 		</a>
 	</td>
-	<td class="points">{grade} / {points}</td>
-	<td class="type">{type}</td>
+	<td class="grade">{grade}</td>
+	<td class="credits">{credits}</td>
+	<td class="type">{verboseType}</td>
 	<td class="date">{date.toLocaleDateString()}</td>
 </tr>
 
 <style>
 	.course .name {
 		font-weight: bold;
-	}
-
-	.course .code {
-		opacity: 0.7;
-	}
-
-	.course .date {
-		color: blue;
 	}
 </style>

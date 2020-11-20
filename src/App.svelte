@@ -6,15 +6,15 @@
 </svelte:head>
 
 <script>
-	import Uploader from './Uploader.svelte';
-	import ResultViewer from './ResultViewer/ResultViewer.svelte';
-	import Spinner from './Spinner.svelte';
-	import { analyzePDF } from '../parser.js';
+	import Uploader from './components/Uploader.svelte';
+	import Analytics from './components/Analytics/Analytics.svelte';
+	import Spinner from './components/Spinner.svelte';
+	import { analyzePDF } from './parser.js';
 
 	let loading = false;
 	let parsedData = null;
 
-	// parses and analyzes the file for course data
+	// parses the PDF and extracts all course data from it
 	async function analyze(file) {
 		if(!file) return;
 		
@@ -32,7 +32,7 @@
 <main>
 	<header>
 		<h1>
-			Nettiopsu analyser
+			Nettiopsu Analytics
 		</h1>
 	</header>
 	<article>
@@ -41,7 +41,7 @@
 			<Spinner active={loading} />
 		</section>
 		<section id="results">
-			<ResultViewer courses={parsedData} />
+			<Analytics courses={parsedData} />
 		</section>
 	</article>
 </main>

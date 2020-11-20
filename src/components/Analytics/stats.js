@@ -3,12 +3,12 @@
  * @param {*} courses
  */
 const gpa = (courses) => {
-  const totalPoints = courses.reduce((sum, curr) => sum + curr.points, 0);
+  const totalCredits = courses.reduce((sum, curr) => sum + curr.credits, 0);
   const weightedGrades = courses.reduce(
-    (sum, curr) => sum + curr.points * curr.grade,
+    (sum, curr) => sum + curr.credits * curr.grade,
     0
   );
-  return weightedGrades / totalPoints;
+  return weightedGrades / totalCredits;
 };
 
 export default {

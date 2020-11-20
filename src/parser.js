@@ -58,14 +58,17 @@ const getItemIndexes = (items, pattern) =>
  * @param {*} index Index of the course code in the array
  */
 const getCourseDetails = (items, index) => {
-  const [code, name, points, type, grade, date] = items.slice(index, index + 6);
+  const [code, name, credits, type, grade, date] = items.slice(
+    index,
+    index + 6
+  );
 
   const [day, month, year] = date.str.split(".");
 
   return {
     code: code.str,
     name: name.str,
-    points: parseInt(points.str),
+    credits: parseInt(credits.str),
     type: type.str,
     grade: grade.str,
     date: new Date(year, month - 1, day),
