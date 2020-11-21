@@ -22,7 +22,7 @@
 			loading = true;
 			parsedData = await analyzePDF(file);
 		} catch(err) {
-			console.log(err)
+			console.log(err);
 		} finally {
 			loading = false;
 		}
@@ -37,11 +37,11 @@
 	</header>
 	<article>
 		<section id="upload">
-			<Uploader submit={analyze} />
+			<Uploader submit={analyze} on:clear={() => parsedData = null}/>
 			<Spinner active={loading} />
 		</section>
 		<section id="results">
-			<Analytics courses={parsedData} />
+      <Analytics courses={parsedData} />
 		</section>
 	</article>
 </main>

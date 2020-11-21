@@ -1,13 +1,13 @@
-export const courseTypes = {
-  Y: "yy",
-  P: "pp",
-  A: "aa",
-  S: "ss",
-  J: "jj",
-  K: "kk",
-  V: "vv",
-  H: "hh",
-  O: "oo",
+export const studyLevels = {
+  Y: "General Studies",
+  P: "Basic Studies",
+  A: "Intermediate Studies",
+  S: "Advanced Studies",
+  J: "Postgraduate Studies",
+  K: "Language Studies",
+  V: "Preparatory Studies",
+  H: "Practical Training",
+  O: "Study Module",
 };
 
 export const toggleInArr = (arr, item) => {
@@ -15,8 +15,9 @@ export const toggleInArr = (arr, item) => {
 
   if (index !== -1) {
     arr.splice(index, 1);
-    arr = arr; // force update
   } else {
-    arr = [...arr, item];
+    arr.push(item);
   }
+
+  return arr;
 };
