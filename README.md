@@ -1,4 +1,4 @@
-# Nettiopsu Analytics
+# NopsA - Nettiopsu Analytics
 
 **Note:** Nettiopsu Analytics is not affiliated with UTU, it's just a personal project. Use it at your own risk.
 
