@@ -5,6 +5,8 @@
 	import Settings from './AnalyticsSettings.svelte';
   import stats from './stats';
   
+
+  let showCourses = false;
   let courseFilter = () => true;
 	const handleFilterUpdate = (ns) => (courseFilter = ns.detail);
 
@@ -21,31 +23,55 @@
 
 {#if courses}
   <div>
-      <Settings on:update={handleFilterUpdate}/>
-      <h1>Statistics</h1>
-      <h2>GPA: <span title="Pass/Fail courses do not count towards GPA">{courseStats.gpa}</span></h2>
-      <h2>Credits: {courseStats.credits}</h2>
+      <h1>Analytics</h1>
+      <ul id="analytics">
+        <li>GPA: <span title="Pass/Fail courses do not count towards GPA">{courseStats.gpa}</span></li>
+        <li>Credits: {courseStats.credits}</li>
+      </ul>
   </div>
-  <table id="courses">
-    <tr>
-      <th>Name</th>
-      <th>Code</th>
-      <th>Grade</th>
-      <th>Credits</th>
-      <th>Level</th>
-      <th>Date</th>
-    </tr>
-    {#each filteredCourses as course}
+  <div>
+    <Settings on:update={handleFilterUpdate}/>
+    <input
+      type="submit"
+      value={showCourses ? "- Courses" : "+ Courses"}
+      on:click={() => showCourses = !showCourses}
+    />
+  </div>
+  {#if showCourses}
+    <table id="courses">
       <tr>
-        <Course {...course} />
+        <th>Name</th>
+        <th>Code</th>
+        <th>Grade</th>
+        <th>Credits</th>
+        <th>Level</th>
+        <th>Date</th>
       </tr>
-    {/each}
-  </table>
+      {#each filteredCourses as course}
+        <tr>
+          <Course {...course} />
+        </tr>
+      {/each}
+    </table>
+  {/if}
 {/if}
 
 <style>
  	table, th {
 		border: 1px solid #666;
 		border-collapse: collapse;
-	}
+  }
+  
+  #analytics {
+    list-style-type: none;
+
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
+  }
+
+  #analytics > li {
+    margin: 0 1em;
+    margin-left: 0;
+  }
 </style>

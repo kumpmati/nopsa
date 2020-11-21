@@ -20,7 +20,7 @@
 		height: 1em;
 		transform-origin: center;
 		animation: spin 500ms infinite;
-		transition: opacity 100ms;
+		transition: opacity 200ms;
 	}
 
 	.spinner.visible {

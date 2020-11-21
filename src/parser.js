@@ -35,7 +35,12 @@ async function parse(data) {
     await pdf.getPage(pageNum).then(async (page) => {
       const items = (await page.getTextContent()).items; // array of all text items on page
 
-      getItemIndexes(items, courseNumberRegexp).forEach((i) => {
+      const itemIndexes = getItemIndexes(items, courseNumberRegexp);
+      if (itemIndexes.length === 0) {
+        throw new Error("no courses found");
+      }
+
+      itemIndexes.forEach((i) => {
         result.push(getCourseDetails(items, i));
       });
     });
