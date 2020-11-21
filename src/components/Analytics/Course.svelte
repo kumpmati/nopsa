@@ -58,8 +58,13 @@
 		font-weight: bold;
 	}
 
-	.credits, .date {
+	.credits {
 		color: var(--text-col-subtle);
 		text-align: center;
-	}
+  }
+  
+  .date {
+    color: var(--text-col-subtle);
+    text-align: right;
+  }
 </style>

@@ -6,13 +6,18 @@
   import stats from './stats';
   
 	let showCourses = true;
-	let showSettings = false;
-  let courseFilter = () => true;
-	const handleFilterUpdate = (ns) => (courseFilter = ns.detail);
-
-  // courses filtered by settings
-	$: filteredCourses = courses ? courses.filter(courseFilter) : [];
+  let showSettings = false;
   
+  let filteredCourses = [];
+  let courseFilter = () => true;
+	const handleFilterUpdate = (ns) => courseFilter = ns.detail;
+
+  $: if (!courses) {
+    courseFilter = () => true; // reset filter when no courses as props
+  }
+
+  $: filteredCourses = courses ? courses.filter(courseFilter) : [];
+
   // statistics for the visible courses
   $: courseStats = {
 		gpa: stats.gpa(filteredCourses),
@@ -47,10 +52,10 @@
 		/>
 	</div>
 	<div id="details">
-		<Settings
-			visible={showSettings}
-			on:update={handleFilterUpdate}
-		/>
+    <Settings
+      visible={showSettings}
+      on:update={handleFilterUpdate}
+    />
 		<table>
 			{#if showCourses}
 			<thead>

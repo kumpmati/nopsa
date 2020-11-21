@@ -34,7 +34,7 @@
 <main class:small={parsedData === null}>
 	<header class:small={parsedData !== null}>
 		<h1>
-			<span id="title-1">Nettiopsu</span> <span id="title-2">Analytics</span>
+			<span id="title-1">N</span><span id="title-2">opsa</span>
 		</h1>
 		<span id="info-buttons">
 			<a
@@ -64,12 +64,13 @@
 
 <style>
 	#title-1 {
+    font-style: italic;
 		color:var(--title-col);
 	}
 
 	#title-2 {
 		font-style: italic;
-		color: rgb(255, 255, 255);
+		color: white;
 		font-weight: lighter;
 	}
 
