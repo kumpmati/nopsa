@@ -12,17 +12,30 @@ body {
   font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
     sans-serif;
 
-  background-color: rgb(25, 26, 27);
-  --light-bg: rgba(255, 255, 255, 0.075);
+  --light-contrast: rgba(255, 255, 255, 0.05);
+  --dark-contrast: rgba(0, 0, 0, 0.2);
+  --light-bg: rgb(46, 46, 46);
+  --dark-bg: rgb(30, 30, 30);
+  --accent-bg: rgb(42, 66, 97);
+  --bg: rgb(34, 34, 34);
+  --text-col: lightgray;
+  --text-col-subtle: gray;
+  --text-col-accent: rgb(144, 163, 189);
+  --title-col: rgb(68, 132, 223);
+  background-color: rgb(26, 26, 26);
 }
 
-input[type="submit"] {
+input,
+select,
+.button {
   font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
     sans-serif;
-  letter-spacing: 0.1ch;
-  padding: 1em 0.75em;
 
-  line-height: 0;
+  padding: 0.5em 0.75em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 2em;
   min-width: 2em;
 
@@ -32,19 +45,23 @@ input[type="submit"] {
   font-size: 1rem;
   font-weight: bold;
 
-  color: rgb(131, 131, 131);
+  color: var(--text-col-subtle);
   background-color: transparent;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-input[type="submit"]:hover {
+input:hover,
+select:hover,
+.button:hover {
   color: rgb(224, 224, 224);
   cursor: pointer;
-  background-color: var(--light-bg);
+  background-color: var(--light-contrast);
 }
 
-input[type="submit"]:focus {
+input:focus,
+select:focus,
+.button:focus {
   outline: 0;
 }

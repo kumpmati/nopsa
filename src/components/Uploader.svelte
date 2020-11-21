@@ -73,9 +73,8 @@
 
   #spinner {
     border-radius: 100%;
-    padding: 1em;
-    background-color: var(--light-bg);
-    backdrop-filter: blur(5px);
+    padding: .25em;
+    background-color: var(--bg);
     position: absolute;
     top: 50%;
     left: 50%;

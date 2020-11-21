@@ -5,7 +5,7 @@
 	import Settings from './AnalyticsSettings.svelte';
   import stats from './stats';
   
-	let showCourses = false;
+	let showCourses = true;
 	let showSettings = false;
   let courseFilter = () => true;
 	const handleFilterUpdate = (ns) => (courseFilter = ns.detail);
@@ -24,8 +24,8 @@
 {#if courses}
 	<ul id="analytics">
 		<li>GPA: <span class="val" title="Pass/Fail courses do not count towards GPA">{courseStats.gpa}</span></li>
+		<li>Most frequent grade: <span class="val">{courseStats.most_frequent}</span></li>
 		<li>Credits: <span class="val">{courseStats.credits}</span></li>
-		<li>Most frequent grade: <span class="val">{courseStats.most_frequent.grade}</span></li>
 	</ul>
 	<div id="controls">
 		<input
@@ -47,11 +47,13 @@
 		/>
 	</div>
 	<div id="details">
-		{#if showSettings}
-			<Settings on:update={handleFilterUpdate}/>
-		{/if}
+		<Settings
+			visible={showSettings}
+			on:update={handleFilterUpdate}
+		/>
 		<table>
 			{#if showCourses}
+			<thead>
 				<tr>
 					<th>Name</th>
 					<th>Code</th>
@@ -60,11 +62,12 @@
 					<th>Level</th>
 					<th>Date</th>
 				</tr>
+			</thead>
+			<tbody>
 				{#each filteredCourses as course}
-					<tr>
-						<Course {...course} />
-					</tr>
+					<Course {...course} />
 				{/each}
+			</tbody>
 			{/if}
 		</table>
 	</div>
@@ -81,23 +84,18 @@
 		border-radius: .3em;
 
 		list-style-type: none;
-		background-color: var(--light-bg);
+		background-color: var(--accent-bg);
   }
 
   #analytics > li {
 		font-size: 1.75em;
-		color: rgb(150,150,150);
+		color: var(--text-col-accent);
     margin: .25em;
 	}
 	
 	.val {
 		font-weight: bold;
 		color: white;
-	}
-	
-	table, th {
-		border: 1px solid #666;
-		border-collapse: collapse;
 	}
 
 	#controls {
@@ -120,6 +118,11 @@
 	#details {
 		display: grid;
 		grid-template-rows: repeat(auto-fill, minmax(50%, 1fr));
+	}
+
+	th {
+		text-align: left;
+		padding: 1em 0;
 	}
 
 </style>

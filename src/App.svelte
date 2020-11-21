@@ -36,6 +36,13 @@
 		<h1>
 			<span id="title-1">Nettiopsu</span> <span id="title-2">Analytics</span>
 		</h1>
+		<a
+			id="help"
+			class="button"
+			target="_blank"
+			referrerpolicy="no-referrer"
+			href="https://github.com/kumpmati/nettiopsu-analytics"
+		>?</a>
 	</header>
 	<article>
 		<section id="uploader" class:small={parsedData !== null}>
@@ -57,13 +64,20 @@
 
 <style>
 	#title-1 {
-		color: rgb(68, 132, 223);
+		color:var(--title-col);
 	}
 
 	#title-2 {
 		font-style: italic;
 		color: rgb(255, 255, 255);
 		font-weight: lighter;
+	}
+
+	#help {
+		position: absolute;
+		top: 1em;
+		right: 1em;
+		text-decoration: none;
 	}
 
   main {
@@ -76,13 +90,13 @@
 
     border-radius: .5em;
 
-    width: 50%;
+    width: 60%;
     max-width: 70em;
 
     overflow-y: auto;
 
-    color: rgb(230, 230, 230);
-		background-color: rgb(50,50,50);
+    color: var(--text-col);
+		background-color: var(--bg);
   }
 
   main.small {
@@ -91,7 +105,7 @@
   }
 
   header {
-		margin-bottom: 2em;
+		margin-bottom: 1.5em;
 		z-index: 15;
   }
 
@@ -115,7 +129,7 @@
   }
 
   #results {
-		margin-top: 2em;
+		margin-top: 1.5em;
     width: 100%;
   }
 

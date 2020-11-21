@@ -19,13 +19,14 @@ const gpa = (courses) => {
 
 function mostFrequent(courses, func) {
   const arr = courses.slice(0, courses.length);
-  return arr
+  const item = arr
     .sort(
       (a, b) =>
         arr.filter((v) => func(v) === func(a)).length -
         arr.filter((v) => func(v) === func(b)).length
     )
     .pop();
+  return item ? func(item) : "N/A";
 }
 
 export default {
