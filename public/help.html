@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Help</title>
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/global.css" />
+  </head>
+
+  <body>
+    <main>
+      <div>
+        <a class="button" href="index.html">Back </a>
+        <a
+          class="button"
+          target="_blank"
+          referrerpolicy="no-referrer"
+          href="https://github.com/kumpmati/nettiopsu-analytics"
+          >GitHub
+        </a>
+      </div>
+      <h1 id="nettiopsu-analytics">Nettiopsu Analytics</h1>
+      <p>
+        <strong>Note:</strong> Nettiopsu Analytics is not affiliated with UTU,
+        it&#39;s just a personal project. Use it at your own risk.
+      </p>
+      <h2 id="what-it-is">What it is</h2>
+      <p>
+        Nettiopsu Analytics is a website that parses your Nettiopsu transcript
+        PDF for course info, then shows your current statistics like GPA, total
+        credits and most frequent grade. It also allows you to filter the
+        courses by level, grade type and date, while showing stats for the
+        selected courses.
+      </p>
+      <p>
+        <strong
+          >All the parsing and analysis is done in the browser, so no personal
+          data is sent or stored anywhere. The website only looks at the course
+          data, nothing else.</strong
+        >
+      </p>
+      <h2 id="technologies">Technologies</h2>
+      <p>
+        Nettiopsu Analytics is built using
+        <a href="https://svelte.dev">Svelte</a> and
+        <a href="https://mozilla.github.io/pdf.js/">PDF.js</a>.
+        <strong>PDF.js</strong> is used to extract text data from the PDF file,
+        and <strong>Svelte</strong> is used to show that data beautifully.
+      </p>
+    </main>
+  </body>
+
+  <style>
+    main {
+      position: relative;
+      width: 70%;
+      margin: 0 auto;
+      top: 5em;
+      color: var(--text-col-subtle);
+    }
+
+    a {
+      color: var(--text-col-accent);
+    }
+
+    h1,
+    h2 {
+      color: white;
+      margin-top: 0.5em;
+      margin-bottom: 0.25em;
+    }
+  </style>
+</html>

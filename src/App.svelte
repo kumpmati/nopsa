@@ -36,13 +36,13 @@
 		<h1>
 			<span id="title-1">Nettiopsu</span> <span id="title-2">Analytics</span>
 		</h1>
-		<a
-			id="help"
-			class="button"
-			target="_blank"
-			referrerpolicy="no-referrer"
-			href="https://github.com/kumpmati/nettiopsu-analytics"
-		>?</a>
+		<span id="info-buttons">
+			<a
+				class="button"
+				href="help.html"
+				title="Help"
+			>?</a>
+		</span>
 	</header>
 	<article>
 		<section id="uploader" class:small={parsedData !== null}>
@@ -73,11 +73,11 @@
 		font-weight: lighter;
 	}
 
-	#help {
+	#info-buttons {
 		position: absolute;
 		top: 1em;
 		right: 1em;
-		text-decoration: none;
+		display: flex;
 	}
 
   main {
