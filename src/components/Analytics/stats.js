@@ -17,6 +17,18 @@ const gpa = (courses) => {
   return totalCredits > 0 ? (weightedGrades / totalCredits).toFixed(2) : "N/A";
 };
 
+function mostFrequent(courses, func) {
+  const arr = courses.slice(0, courses.length);
+  return arr
+    .sort(
+      (a, b) =>
+        arr.filter((v) => func(v) === func(a)).length -
+        arr.filter((v) => func(v) === func(b)).length
+    )
+    .pop();
+}
+
 export default {
   gpa,
+  mostFrequent,
 };

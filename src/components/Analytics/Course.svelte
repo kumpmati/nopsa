@@ -23,6 +23,7 @@
 
 <style>
 	.name {
-		font-weight: bold;
+		font-weight: light;
+		color: gray;
 	}
 </style>

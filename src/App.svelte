@@ -21,12 +21,12 @@
 		
 		try {
 			loading = true;
-      parsedData = await analyzePDF(file);
-      errMessage = null;
+			parsedData = await analyzePDF(file);
+			errMessage = null;
 		} catch(err) {
       errMessage = err;
 		} finally {
-      loading = false;
+			loading = false;
 		}
 	}
 </script>
@@ -34,7 +34,7 @@
 <main class:small={parsedData === null}>
 	<header class:small={parsedData !== null}>
 		<h1>
-			Nettiopsu Analytics
+			<span id="title-1">Nettiopsu</span> <span id="title-2">Analytics</span>
 		</h1>
 	</header>
 	<article>
@@ -56,89 +56,102 @@
 </main>
 
 <style>
+	#title-1 {
+		color: rgb(68, 132, 223);
+	}
+
+	#title-2 {
+		font-style: italic;
+		color: rgb(255, 255, 255);
+		font-weight: lighter;
+	}
+
   main {
     display: flex;
     flex-direction: column;
     position: relative;
 
-    border-radius: .5em;
     padding: 1em;
-    margin: 3em auto;
+		margin: 5em auto;
 
-    width: 100vh;
+    border-radius: .5em;
+
+    width: 50%;
     max-width: 70em;
-
-    height: calc(100vh - 6em);
-    max-height: 40em;
 
     overflow-y: auto;
 
     color: rgb(230, 230, 230);
-    background-color: rgb(50,50,50);
+		background-color: rgb(50,50,50);
   }
 
   main.small {
-    width: 25em;
-    height: 20em;
+		width: 25em;
+		height: 20em;
   }
 
   header {
-    margin-bottom: 2em;
-    transition: margin 200ms;
-  }
-
-  header.small {
-    margin-bottom: 1em;
+		margin-bottom: 2em;
+		z-index: 15;
   }
 
   #uploader {
-    margin: 0 auto;
-    padding: 1em;
-
-    height: 13.75em;
-
-    border-radius: .5em;
+		margin: 0 auto;
+    height: 13em;
+    border-radius: .3em;
     
     background-color: var(--light-bg);
 
-    transition: height 200ms;
-    overflow: hidden;
+    transition: transform 200ms,
+			margin 200ms,
+			width 200ms;
   }
 
   #uploader.small {
-    height: 4em;
+		top: 0;
+		margin: 0;
+    height: 3em;
+		background: 0;
   }
 
   #results {
+		margin-top: 2em;
     width: 100%;
-    transition: height 200ms;
   }
 
   #results.small {
     height: 0;
+		margin: 0;
   }
 
-  @media all and (max-width: 850px) {
+  @media all and (max-width: 1000px) {
     main {
-
-      width: 100vw;
+			width: 100vw;
+			max-width: 100vw;
       height: 100vh;
       max-height: 100vh;
 
       border-radius: 0;
       margin: 0;
-      padding: 0;
+      padding: 1em;
       padding-top: 2em;
-      box-sizing: border-box;
-    }
-
+			box-sizing: border-box;
+		}
+		
+		main.small {
+			top: 5em;
+			margin: 0 auto;
+			border-radius: .5em;
+			height: auto;
+		}
+	}
+	
+	@media all and (max-width: 700px) {
     main.small {
-      width: 100vw;
-      height: 100vh;
+			top: 0;
+			border-radius: 0;
+			width: 100vw;
+			height: 100vh;
     }
-
-    #uploader {
-      height: 50vh;
-    }
-  }
+	}
 </style>

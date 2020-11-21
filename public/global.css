@@ -2,19 +2,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
+    sans-serif;
 
-  background-color: rgb(30, 30, 30);
-  --light-bg: rgba(255, 255, 255, 0.1);
+  background-color: rgb(25, 26, 27);
+  --light-bg: rgba(255, 255, 255, 0.075);
 }
 
 input[type="submit"] {
-  margin: 0.5em;
+  font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
+    sans-serif;
+  letter-spacing: 0.1ch;
   padding: 1em 0.75em;
 
   line-height: 0;
@@ -24,13 +29,19 @@ input[type="submit"] {
   border: 2px solid transparent;
   border-radius: 0.25em;
 
-  color: rgb(230, 230, 230);
+  font-size: 1rem;
+  font-weight: bold;
+
+  color: rgb(131, 131, 131);
   background-color: transparent;
 
-  transition: background-color 50ms;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 input[type="submit"]:hover {
+  color: rgb(224, 224, 224);
+  cursor: pointer;
   background-color: var(--light-bg);
 }
 
