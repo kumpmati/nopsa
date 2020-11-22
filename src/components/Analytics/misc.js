@@ -9,15 +9,3 @@ export const studyLevels = {
   H: "Practical Training",
   O: "Study Module",
 };
-
-export const toggleInArr = (arr, item) => {
-  const index = arr.indexOf(item);
-
-  if (index !== -1) {
-    arr.splice(index, 1);
-  } else {
-    arr.push(item);
-  }
-
-  return arr;
-};
