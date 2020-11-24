@@ -83,7 +83,7 @@
 		display: grid;
 		
 		padding: 2em;
-		width: 75%;
+		width: 100%;
 		margin: 2em auto;
 
 		border-radius: .3em;
@@ -121,6 +121,7 @@
 	}
 	
 	#details {
+    overflow-x: auto;
 		display: grid;
 		grid-template-rows: repeat(auto-fill, minmax(50%, 1fr));
 	}
