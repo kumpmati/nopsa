@@ -3,7 +3,7 @@
 
   import { createEventDispatcher } from 'svelte';
   import courseFilterFunc from './filter';
-  import { studyLevels, toggleInArr } from './misc';
+  import { studyLevels } from './misc';
 
 	const dispatch = createEventDispatcher();
 	
@@ -50,15 +50,14 @@
 		<fieldset class="_100">
 			<h2>Level</h2>
 			<span id="selected-levels">
-				{#each Object.entries(studyLevels) as [levelCode, levelName]}
+				{#each Object.entries(studyLevels) as [symbol, name]}
 					<label>
 						<input
 						type="checkbox"
-						value={levelCode}
-						checked={selectedLevels.indexOf(levelCode) !== -1}
-						on:click={() => selectedLevels = toggleInArr(selectedLevels, levelCode)}
+						value={symbol}
+						bind:group={selectedLevels}
 						/>
-						<h3>{levelName}</h3>
+						<h3>{name}</h3>
 					</label>
 				{/each}
 			</span>
