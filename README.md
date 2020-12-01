@@ -1,3 +1,4 @@
+![Nopsa logo](https://github.com/kumpmati/nopsa/blob/master/public/favicon/favicon-64.png?raw=true)
 # Nopsa - Nettiopsu Analytics
 
 **Note:** Nopsa is not affiliated with UTU, it's just a personal project. Use it at your own risk.
