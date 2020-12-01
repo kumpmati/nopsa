@@ -1,16 +1,17 @@
 const CACHE_NAME = "nopsa-pwa";
 const files = [
-  "/",
-  "/index.html",
-  "/help.html",
-  "/global.css",
-  "/build/bundle.css",
-  "/build/bundle.js",
-  "/favicon/favicon-192.png",
-  "/register-sw.js",
-  "/manifest.json",
-  "/sw.js",
-  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js", // PDF.js
+  "./",
+  "./index.html",
+  "./help.html",
+  "./global.css",
+  "./build/bundle.css",
+  "./build/bundle.js",
+  "./favicon/favicon-192.png",
+  "./register-sw.js",
+  "./sw.js",
+  "./manifest.json",
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js",
 ];
 
 self.addEventListener("install", (e) => {

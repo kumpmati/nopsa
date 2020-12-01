@@ -3,6 +3,6 @@ window.addEventListener("load", () => {
 
   // start service worker if supported
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js");
+    navigator.serviceWorker.register(`${window.location.pathname}sw.js`);
   }
 });
