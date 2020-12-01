@@ -59,7 +59,7 @@
   }
 
 	#dropzone > label {
-		color: gray;
+		color: lightgray;
 		cursor: pointer;
 	}
 
