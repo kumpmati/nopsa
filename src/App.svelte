@@ -1,19 +1,21 @@
 
 <script>
 	import Uploader from './components/Uploader.svelte';
-	import Analytics from './components/Analytics/Analytics.svelte';
+  import Analytics from './components/Analytics/Analytics.svelte';
+  import Updater from './components/Updater.svelte';
 	import { analyzePDF } from './parser.js';
 
   let loading = false;
   let errMessage = null;
-	let parsedData = null;
+  let parsedData = null;
+  $: isParsed = parsedData !== null; // used for UI toggling
 
 	// parses the PDF and extracts all course data from it
 	async function analyze(file) {
 		if(!file) return;
 		
 		try {
-			loading = true;
+      loading = true;
 			parsedData = await analyzePDF(file);
 			errMessage = null;
 		} catch(err) {
@@ -21,11 +23,12 @@
 		} finally {
 			loading = false;
 		}
-	}
+  }
 </script>
 
-<main class:small={parsedData === null}>
-	<header class:small={parsedData !== null}>
+<Updater />
+<main class:small={!isParsed}>
+	<header class:small={isParsed}>
 		<h1>
 			<span id="title-1">N</span><span id="title-2">opsa</span>
 		</h1>
@@ -38,7 +41,7 @@
 		</span>
 	</header>
 	<article>
-		<section id="uploader" class:small={parsedData !== null}>
+		<section id="uploader" class:small={isParsed}>
       <Uploader
         submit={analyze}
         loading={loading}
@@ -49,30 +52,13 @@
         }}
       />
 		</section>
-		<section id="results" class:small={parsedData === null}>
+		<section id="results" class:small={!isParsed}>
       <Analytics courses={parsedData} />
 		</section>
 	</article>
 </main>
 
 <style>
-	#title-1 {
-    font-style: italic;
-		color:var(--title-col);
-	}
-
-	#title-2 {
-		font-style: italic;
-		color: white;
-		font-weight: lighter;
-	}
-
-	#info-buttons {
-		position: absolute;
-		top: 1em;
-		right: 1em;
-		display: flex;
-	}
 
   main {
     display: flex;
@@ -90,18 +76,32 @@
     overflow-y: auto;
 
     color: var(--text-col);
-		background-color: var(--bg);
+    background-color: var(--bg);
   }
 
   main.small {
 		width: 25em;
-		height: 20em;
+		height: auto;
   }
 
   header {
+    display: flex;
+    justify-content: space-between;
+    top: 0;
 		margin-bottom: 1.5em;
 		z-index: 15;
   }
+
+	#title-1 {
+    font-style: italic;
+		color:var(--title-col);
+	}
+
+	#title-2 {
+		font-style: italic;
+		color: white;
+		font-weight: lighter;
+	}
 
   #uploader {
 		margin: 0 auto;
@@ -142,15 +142,12 @@
       border-radius: 0;
       margin: 0;
       padding: 1em;
-      padding-top: 2em;
 			box-sizing: border-box;
 		}
 		
 		main.small {
 			top: 5em;
 			margin: 0 auto;
-			border-radius: .5em;
-			height: auto;
 		}
 	}
 	

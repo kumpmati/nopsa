@@ -6,7 +6,7 @@
 	export let level = "";
   export let date = null;
 
-  import { studyLevels } from './misc.js';
+  import { studyLevels } from './js/misc.js';
   $: descriptiveLevel = studyLevels[level] || "";
 </script>
 

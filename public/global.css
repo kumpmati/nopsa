@@ -12,17 +12,17 @@ body {
   font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
     sans-serif;
 
-  --light-contrast: rgba(255, 255, 255, 0.05);
+  --light-contrast: rgba(255, 255, 255, 0.07);
   --dark-contrast: rgba(0, 0, 0, 0.2);
   --light-bg: rgb(46, 46, 46);
-  --dark-bg: rgb(30, 30, 30);
+  --dark-bg: rgb(25, 25, 25);
   --accent-bg: rgb(42, 66, 97);
-  --bg: rgb(34, 34, 34);
+  --bg: rgb(32, 32, 32);
   --text-col: lightgray;
   --text-col-subtle: gray;
-  --text-col-accent: rgb(144, 163, 189);
+  --text-col-accent: rgb(125, 152, 189);
   --title-col: rgb(68, 132, 223);
-  background-color: rgb(26, 26, 26);
+  background-color: var(--dark-bg);
 }
 
 input,
@@ -49,6 +49,8 @@ select,
   color: var(--text-col-subtle);
   background-color: transparent;
 
+  transition: box-shadow 200ms;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -65,4 +67,5 @@ input:focus,
 select:focus,
 .button:focus {
   outline: 0;
+  box-shadow: 0 0 0 0.1em var(--title-col);
 }

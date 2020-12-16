@@ -1,6 +1,6 @@
 {
-  "name": "nettiopsu-analyser",
-  "version": "1.0.0",
+  "name": "nopsa",
+  "version": "0.1.1",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",

@@ -1,37 +1,27 @@
 <script>
   export let courses;
 
+  import Basic from './Basic.svelte';
 	import Course from './Course.svelte';
-	import Settings from './AnalyticsSettings.svelte';
-  import stats from './stats';
+	import Settings from './CourseFilters.svelte';
   
 	let showCourses = true;
   let showSettings = false;
   
   let filteredCourses = [];
   let courseFilter = () => true;
-	const handleFilterUpdate = (ns) => courseFilter = ns.detail;
 
-  $: if (!courses) {
-    courseFilter = () => true; // reset filter when no courses as props
+  $: {
+    if (!courses) courseFilter = () => true; // reset filter when no courses
+    filteredCourses = courses ? courses.filter(courseFilter) : [];
   }
 
-  $: filteredCourses = courses ? courses.filter(courseFilter) : [];
-
-  // statistics for the visible courses
-  $: courseStats = {
-		gpa: stats.gpa(filteredCourses),
-		most_frequent: stats.mostFrequent(filteredCourses, course => course.grade),
-    credits: filteredCourses.reduce((sum, curr) => sum + curr.credits, 0),
-	}
 </script>
 
 {#if courses}
-	<ul id="analytics">
-		<li>GPA: <span class="val" title="Pass/Fail courses do not count towards GPA">{courseStats.gpa}</span></li>
-		<li>Most frequent grade: <span class="val">{courseStats.most_frequent}</span></li>
-		<li>Credits: <span class="val">{courseStats.credits}</span></li>
-	</ul>
+  <div id="analytics">
+    <Basic data={filteredCourses} />
+  </div>
 	<div id="controls">
 		<input
 			type="submit"
@@ -54,25 +44,25 @@
 	<div id="details">
     <Settings
       visible={showSettings}
-      on:update={handleFilterUpdate}
+      on:update={(ns) => courseFilter = ns.detail}
     />
 		<table>
 			{#if showCourses}
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Code</th>
-					<th>Grade</th>
-					<th>Credits</th>
-					<th>Level</th>
-					<th>Date</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#each filteredCourses as course}
-					<Course {...course} />
-				{/each}
-			</tbody>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Grade</th>
+            <th>Credits</th>
+            <th>Level</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each filteredCourses as course}
+            <Course {...course} />
+          {/each}
+        </tbody>
 			{/if}
 		</table>
 	</div>
@@ -80,28 +70,9 @@
 
 <style>
   #analytics {
-		display: grid;
-		
-		padding: 2em;
-		width: 100%;
-		margin: 2em auto;
-
-		border-radius: .3em;
-
-		list-style-type: none;
-		background-color: var(--accent-bg);
+    margin: 2em 0;
+    display: flex;
   }
-
-  #analytics > li {
-		font-size: 1.75em;
-		color: var(--text-col-accent);
-    margin: .25em;
-	}
-	
-	.val {
-		font-weight: bold;
-		color: white;
-	}
 
 	#controls {
 		margin: 0 auto;

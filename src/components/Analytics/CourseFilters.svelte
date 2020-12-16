@@ -2,8 +2,8 @@
 	export let visible;
 
   import { createEventDispatcher } from 'svelte';
-  import courseFilterFunc from './filter';
-  import { studyLevels } from './misc';
+  import courseFilterFunc from './js/filter';
+  import { studyLevels } from './js/misc';
 
 	const dispatch = createEventDispatcher();
 	
@@ -147,4 +147,10 @@
 	._100 {
 		flex-basis: calc(100% - 2* var(--fieldset-gap));
 	}
+
+  @media all and (max-width: 500px) {
+    ._50, ._100 {
+      flex-basis: auto;
+    }
+  }
 </style>
