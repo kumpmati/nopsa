@@ -106,6 +106,6 @@
     bottom: .5em;
     right: .5em;
     z-index: 5;
-    color: var(--text-col-subtle);
+    color: var(--text-col);
   }
 </style>

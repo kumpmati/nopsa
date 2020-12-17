@@ -1,9 +1,9 @@
 
 <script>
-	import Uploader from './components/Uploader.svelte';
+  import Uploader from './components/Uploader.svelte';
   import Analytics from './components/Analytics/Analytics.svelte';
   import Updater from './components/Updater.svelte';
-	import { analyzePDF } from './parser.js';
+  import { analyzePDF } from './parser.js';
 
   let loading = false;
   let errMessage = null;
@@ -59,7 +59,6 @@
 </main>
 
 <style>
-
   main {
     display: flex;
     flex-direction: column;
@@ -92,13 +91,17 @@
 		z-index: 15;
   }
 
-	#title-1 {
+  #title-1, #title-2 {
     font-style: italic;
-		color:var(--title-col);
+    pointer-events: none;
+    user-select: none;
+  }
+
+	#title-1 {
+		color: var(--title-col);
 	}
 
 	#title-2 {
-		font-style: italic;
 		color: white;
 		font-weight: lighter;
 	}
