@@ -30,8 +30,8 @@
 <main class:small={!isParsed}>
 	<header class:small={isParsed}>
 		<h1>
-			<span id="title-1">N</span><span id="title-2">opsa</span>🎄
-		</h1>
+			<span id="title-1">N</span><span id="title-2">opsa</span> 🎉
+    </h1>
 		<span id="info-buttons">
 			<a
 				class="button"
