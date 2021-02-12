@@ -1,3 +1,8 @@
+/*
+ * Regular expressions used to find specific items
+ */
+const courseNumberRegexp = /([a-zA-Z]{4}\d{4}|[a-zA-Z]{3}\d{5})/;
+
 /**
  * Attempts to analyze a PDF file
  * @param {File} file
@@ -8,15 +13,13 @@ export async function analyzePDF(file) {
     // parse after reading file contents
     reader.onload = async () => {
       try {
-        const parsedData = await parse(reader.result);
-        resolve(parsedData);
+        resolve(await parse(reader.result));
       } catch (parseErr) {
         reject(parseErr);
       }
     };
 
-    // reads file contents as base64
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file); // reads file contents as base64
   });
 }
 
@@ -25,23 +28,24 @@ export async function analyzePDF(file) {
  * @param {String} data
  */
 async function parse(data) {
-  // parse PDF document from base64 data
-  const loadingTask = pdfjsLib.getDocument(data);
-  const pdf = await loadingTask.promise;
-
+  const pdf = await pdfjsLib.getDocument(data).promise; // loads PDF from base64 data
   let result = [];
 
   for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
     await pdf.getPage(pageNum).then(async (page) => {
-      const items = (await page.getTextContent()).items; // array of all text items on page
+      const items = (await page.getTextContent()).items; // array of all text items on the page
 
-      const itemIndexes = getItemIndexes(items, courseNumberRegexp);
+      console.log(items);
+      const itemIndexes = findCourseCodes(items);
       if (itemIndexes.length === 0) {
-        throw new Error("no courses found");
+        throw new Error("No courses found");
       }
 
       itemIndexes.forEach((i) => {
-        result.push(getCourseDetails(items, i));
+        const courseDetails = getCourseDetails(items, i);
+        if (courseDetails) {
+          result.push(courseDetails);
+        }
       });
     });
   }
@@ -49,13 +53,21 @@ async function parse(data) {
   return result;
 }
 
-const getItemIndexes = (items, pattern) =>
-  items.reduce((arr, item) => {
-    if (pattern.test(item.str)) {
+/**
+ * Returns an array of indexes, where each index
+ * corresponds to a text item of a course code
+ * @param {*} items
+ * @param {*} pattern
+ */
+const findCourseCodes = (items) => {
+  return items.reduce((arr, item) => {
+    if (courseNumberRegexp.test(item.str)) {
+      // match only course code
       arr.push(items.indexOf(item));
     }
     return arr;
   }, []);
+};
 
 /**
  * Returns all the available details for a course based on the given index.
@@ -79,8 +91,3 @@ const getCourseDetails = (items, index) => {
     date: new Date(year, month - 1, day),
   };
 };
-
-/*
- * Regular expressions used to find specific items
- */
-const courseNumberRegexp = /\w{4}\d{4}/;
