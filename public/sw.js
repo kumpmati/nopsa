@@ -29,12 +29,32 @@ self.addEventListener("install", (e) => {
 });
 
 /**
+ * Handles file share events
+ * @param {Event} e
+ */
+const handleFileShare = (e) => {
+  const url = new URL(e.request.url);
+
+  if (e.request.method !== "POST" || url.pathname !== "/share.html") return;
+
+  e.respondWith(
+    (async () => {
+      const formData = await e.request.formData();
+      alert(JSON.stringify(formData));
+      return Response.redirect("index.html", 303);
+    })()
+  );
+};
+
+/**
  * Returns cached files when fetching,
  * and checks for a new software version whenever
  * the manifest.json is fetched.
  */
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
+
+  handleFileShare(e);
 
   if (requestIsManifest(url)) {
     const checkVersion = async () => {
