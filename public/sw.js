@@ -3,6 +3,7 @@ const files = [
   "./",
   "./index.html",
   "./help.html",
+  "./share.html",
   "./global.css",
   "./build/bundle.css",
   "./build/bundle.js",
