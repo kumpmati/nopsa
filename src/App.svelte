@@ -1,9 +1,8 @@
-
 <script>
   import Uploader from './components/Uploader.svelte';
   import Analytics from './components/Analytics/Analytics.svelte';
   import Updater from './components/Updater.svelte';
-  import { analyzePDF } from './parser.js';
+  import { analyzePDF } from './parser/parser.js';
 
   let loading = false;
   let errMessage = null;

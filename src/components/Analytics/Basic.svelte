@@ -6,7 +6,7 @@
   $: courseStats = {
 		gpa: stats.gpa(data),
 		most_frequent: stats.mostFrequent(data, course => course.grade),
-    credits: data.reduce((sum, curr) => sum + curr.credits, 0),
+    credits: stats.totalCredits(data),
 	}
 </script>
 

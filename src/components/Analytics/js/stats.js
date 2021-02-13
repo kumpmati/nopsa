@@ -1,6 +1,6 @@
 /**
  * Calculates the GPA of the given courses
- * @param {*} courses
+ * @param {Array} courses
  */
 const gpa = (courses) => {
   // calculate total credits (where the grade is a number)
@@ -17,7 +17,12 @@ const gpa = (courses) => {
   return totalCredits > 0 ? (weightedGrades / totalCredits).toFixed(2) : "N/A";
 };
 
-function mostFrequent(courses, func) {
+/**
+ * Calculates the most frequent property of every course
+ * @param {Array} courses
+ * @param {Function} func
+ */
+const mostFrequent = (courses, func) => {
   const arr = courses.slice(0, courses.length);
   const item = arr
     .sort(
@@ -27,9 +32,18 @@ function mostFrequent(courses, func) {
     )
     .pop();
   return item ? func(item) : "N/A";
-}
+};
+
+/**
+ * Calculates the total number of credits
+ * @param {*} courses
+ */
+const totalCredits = (courses) => {
+  return courses.reduce((sum, curr) => sum + curr.credits, 0);
+};
 
 export default {
   gpa,
   mostFrequent,
+  totalCredits,
 };
