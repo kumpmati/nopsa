@@ -14,7 +14,23 @@
     files = null; // resets file list
     dispatch("reset");
   }
+
+
+  const setupListener = () => {
+    if (!"serviceWorker" in navigator) return;
+    
+    navigator.serviceWorker
+      .addEventListener("message", (e) => {
+        switch(e.data.action) {
+          case "share":
+            alert(JSON.stringify(e.data));
+            break;
+        }
+      });
+  };
 </script>
+
+<svelte:window on:load={setupListener} />
 
 <section>
 	{#if message}

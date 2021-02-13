@@ -21,6 +21,36 @@ const files = [
 const requestIsManifest = (url) =>
   url.origin === location.origin && url.pathname.endsWith("manifest.json");
 
+/**
+ * Helper to check if an url is a post request
+ * @param {Event} e
+ */
+const requestIsShare = (e) => {
+  const url = new URL(e.request.url);
+
+  if (e.request.method === "POST" && url.pathname === "/share") {
+    e.respondWith(
+      (async () => {
+        const formData = await e.request.formData();
+        const link = formData.get("link") || "";
+
+        const client = await clients.get(e.clientId);
+        if (!client) return;
+
+        client.postMessage({
+          action: "share",
+          message: "test",
+          detail: "test again",
+        });
+        return Response.redirect("/", 303); // redirect to app
+      })()
+    );
+  }
+};
+
+/**
+ * Caches all files in the 'files' array upon installing
+ */
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(files)));
 });
@@ -32,6 +62,8 @@ self.addEventListener("install", (e) => {
  */
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
+
+  requestIsShare(e);
 
   if (requestIsManifest(url)) {
     const checkVersion = async () => {

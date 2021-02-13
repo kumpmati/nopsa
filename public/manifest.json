@@ -1,6 +1,6 @@
 {
   "name": "Nopsa",
-  "version": "0.1.6",
+  "version": "0.1.7-alpha",
   "short_name": "Nopsa",
   "lang": "en-US",
   "start_url": "./index.html",
@@ -19,5 +19,21 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ]
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "hello",
+      "text": "world",
+      "url": "https://nopsa.xyz/share",
+      "files": [
+        {
+          "name": "transcript",
+          "accept": ["application/pdf", ".pdf"]
+        }
+      ]
+    }
+  }
 }
